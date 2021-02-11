@@ -10,9 +10,19 @@ jobs:
     name: Create Github Release
     runs-on: ubuntu-latest
     steps:
-      - name: Tag
-        uses: K-Phoen/semver-release-action@master
+      - name: Run Auto-Semver
+        id: semver
+        uses: RightBrain-Networks/semver-action@1.0.0
         with:
-          release_branch: main
+          mode: set
+      - name: Create Release
+        uses: actions/create-release@v1
+        if: steps['semver']['outputs']['RETURN_STATUS'] == '0'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.semver.outputs.SEMVER_NEW_VERSION }}
+          release_name: ${{ steps.semver.outputs.SEMVER_NEW_VERSION }}
+          body: Version ${{ steps.semver.outputs.SEMVER_NEW_VERSION }}
+          draft: false
+          prerelease: false
