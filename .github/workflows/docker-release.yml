@@ -1,10 +1,6 @@
 on:
-  create:
-    tags:
-      - '*'
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 name: Create Release
 
