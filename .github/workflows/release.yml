@@ -55,8 +55,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
+      - uses: chrisdickinson/setup-yq@latest
       - name: Update values.yaml
-        uses: chrisdickinson/setup-yq@latest
         run: yq w -i values.yaml image.tag ${{ steps.docker_meta.outputs.labels }}
       - name: Commit back
         uses: actions-js/push@master
