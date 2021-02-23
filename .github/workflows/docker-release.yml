@@ -35,3 +35,9 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
+      - name: Get the version
+        run: echo TAG=${GITHUB_REF#refs/tags/} >> $GITHUB_ENV
+      - name: Debug
+        run: printenv
+      - name: Debug2
+        run: echo $TAG
