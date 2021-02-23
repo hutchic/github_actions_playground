@@ -2,14 +2,11 @@ on:
   push:
     tags:
       - '*'
-  release:
-    types:
-      - created
 
 name: Create Release
 
 jobs:
-  build:
+  docker-release:
     name: Create Release
     runs-on: ubuntu-latest
     steps:

@@ -6,7 +6,7 @@ on:
 name: Create Github Release
 
 jobs:
-  build:
+  gh-release:
     name: Create Github Release
     runs-on: ubuntu-latest
     steps:
