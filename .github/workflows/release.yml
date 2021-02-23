@@ -63,4 +63,4 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Release ${{ steps.docker_meta.outputs.labels }}
+          message: Release ${{ steps.versioning.outputs.version }}
