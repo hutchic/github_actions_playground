@@ -12,19 +12,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Run Auto-Semver
-        id: semver
-        uses: RightBrain-Networks/semver-action@1.0.0
+      - name: Auto Increment Semver Action
+        uses: MCKanpolat/auto-semver-action@1.0.5
+        id: versioning
         with:
-          mode: set
+          releaseType: patch 
+          incrementPerCommit: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         uses: actions/create-release@v1
-        if: steps['semver']['outputs']['RETURN_STATUS'] == '0'
+        if: steps['versioning']['outputs']['RETURN_STATUS'] == '0'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.semver.outputs.SEMVER_NEW_VERSION }}
-          release_name: ${{ steps.semver.outputs.SEMVER_NEW_VERSION }}
-          body: Version ${{ steps.semver.outputs.SEMVER_NEW_VERSION }}
+          tag_name: ${{ steps.versioning.outputs.version }}
+          release_name: ${{ steps.versioning.outputs.version }}
+          body: Version ${{ steps.versioning.outputs.version }}
           draft: false
           prerelease: false
