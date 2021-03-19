@@ -1,0 +1,19 @@
+{
+  "branches": ['main']
+  "tagFormat": "${version}",
+  "plugins": [
+    ["@semantic-release/commit-analyzer", {
+      "preset": "angular",
+      "parserOpts": {
+        "headerPattern": '^(\w*)(?:\(([\w\$\.\-\* ]*)\))? (.*)$'
+      }
+    }],
+    ["@semantic-release/release-notes-generator", {
+      "preset": "angular",
+      "parserOpts": {
+        "headerPattern": '^(\w*)(?:\(([\w\$\.\-\* ]*)\))? (.*)$'
+      }
+    }],
+    '@semantic-release/github'
+  ]
+}
