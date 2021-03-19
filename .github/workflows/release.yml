@@ -32,6 +32,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
+        if: steps['release']['outputs']['published'] == 'true'
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
@@ -39,6 +40,7 @@ jobs:
           tag-sha: true # add git short SHA as Docker tag
           tag-custom: ${{ steps.release.outputs.release-version }}
       - name: Build and push
+        if: steps['release']['outputs']['published'] == 'true'
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -49,8 +51,10 @@ jobs:
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
       - name: Update values.yaml
+        if: steps['release']['outputs']['published'] == 'true'
         run: yq w -i values.yaml image.tag ${{ steps.release.outputs.release-version }}
       - name: Commit back
+        if: steps['release']['outputs']['published'] == 'true'
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
