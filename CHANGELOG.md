@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/hutchic/github_actions_playground/compare/0.2.0...0.3.0) (2021-03-19)
+
+
+### Features
+
+* **release:** attempt to release again ([2192599](https://github.com/hutchic/github_actions_playground/commit/2192599b90576caeec7989e98b772f178a44c8f4))
+
 # [0.2.0](https://github.com/hutchic/github_actions_playground/compare/0.1.2...0.2.0) (2021-03-19)
 
 
