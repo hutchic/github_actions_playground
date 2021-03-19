@@ -15,37 +15,18 @@ jobs:
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-      - name: Auto Increment Semver Action
-        uses: MCKanpolat/auto-semver-action@1.0.5
-        id: versioning
-        with:
-          releaseType: patch 
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create changelog text
-        id: changelog
-        uses: loopwerk/conventional-changelog-action@latest
-        if: steps['versioning']['outputs']['RETURN_STATUS'] == '0'
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          exclude_types: other,doc,chore
-      - name: Create Release
-        uses: actions/create-release@v1
-        if: steps['versioning']['outputs']['RETURN_STATUS'] == '0'
+      - name: Release
+        id: release
+        uses: ahmadnassri/action-semantic-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.versioning.outputs.version }}
-          release_name: ${{ steps.versioning.outputs.version }}
-          body: ${{ steps.changelog.outputs.changes }}
-          draft: false
-          prerelease: false
       - name: Docker meta
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: hutchic/github-actions # list of Docker images to use as base name for tags
           tag-sha: true # add git short SHA as Docker tag
-          tag-custom: ${{ steps.versioning.outputs.version }}
+          tag-custom: ${{ steps.release.outputs.last-release-git-tag }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -68,12 +49,10 @@ jobs:
       - name: Setup yq
         uses: chrisdickinson/setup-yq@latest
       - name: Update values.yaml
-        run: yq w -i values.yaml image.tag ${{ steps.versioning.outputs.version }}
-      - name: Update CHANGELOG.md
-        run: echo -e "${{ steps.changelog.outputs.changes }}\n$(cat CHANGELOG.md)" > CHANGELOG.md
+        run: yq w -i values.yaml image.tag ${{ steps.release.outputs.last-release-git-tag }}
       - name: Commit back
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Release ${{ steps.versioning.outputs.version }}
+          message: Release ${{ steps.release.outputs.last-release-git-tag }}
           branch: main
