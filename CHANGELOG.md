@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/hutchic/github_actions_playground/compare/0.1.1...0.1.2) (2021-03-19)
+
+
+### Bug Fixes
+
+* **commit-back:** we need to commit the release back I think ([cc81283](https://github.com/hutchic/github_actions_playground/commit/cc81283d5d1eea52e069fa1a97ebb3e8dd3f0b0e))
+
 ## [0.1.1](https://github.com/hutchic/github_actions_playground/compare/0.1.0...0.1.1) (2021-03-19)
 
 
