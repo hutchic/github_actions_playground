@@ -21,13 +21,24 @@ jobs:
         with:
           releaseType: patch 
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Auto Release
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Create changelog text
+        id: changelog
+        uses: loopwerk/conventional-changelog-action@latest
         if: steps['versioning']['outputs']['RETURN_STATUS'] == '0'
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          exclude_types: other,doc,chore
+      - name: Create Release
+        uses: actions/create-release@v1
+        if: steps['versioning']['outputs']['RETURN_STATUS'] == '0'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.versioning.outputs.version }}
+          release_name: ${{ steps.versioning.outputs.version }}
+          body: ${{ steps.changelog.outputs.changes }}
+          draft: false
           prerelease: false
-          automatic_release_tag: ${{ steps.versioning.outputs.version }}
       - name: Docker meta
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
@@ -58,6 +69,8 @@ jobs:
         uses: chrisdickinson/setup-yq@latest
       - name: Update values.yaml
         run: yq w -i values.yaml image.tag ${{ steps.versioning.outputs.version }}
+      - name: Update CHANGELOG.md
+        run: echo -e "${{ steps.changelog.outputs.changes }}\n$(cat CHANGELOG.md)" > CHANGELOG.md
       - name: Commit back
         uses: actions-js/push@master
         with:
