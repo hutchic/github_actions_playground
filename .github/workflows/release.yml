@@ -21,17 +21,13 @@ jobs:
         with:
           releaseType: patch 
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Release
-        uses: actions/create-release@v1
+      - name: Auto Release
+        uses: "marvinpinto/action-automatic-releases@latest"
         if: steps['versioning']['outputs']['RETURN_STATUS'] == '0'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.versioning.outputs.version }}
-          release_name: ${{ steps.versioning.outputs.version }}
-          body: Version ${{ steps.versioning.outputs.version }}
-          draft: false
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          automatic_release_tag: ${{ steps.versioning.outputs.version }}
       - name: Docker meta
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
