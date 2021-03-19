@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/hutchic/github_actions_playground/compare/0.1.2...0.2.0) (2021-03-19)
+
+
+### Features
+
+* **doarelease:** will this trigger a release ([ab5e31d](https://github.com/hutchic/github_actions_playground/commit/ab5e31dd94e5e27e31af0c7fa240f8b9974cfbab))
+
 ## [0.1.2](https://github.com/hutchic/github_actions_playground/compare/0.1.1...0.1.2) (2021-03-19)
 
 
