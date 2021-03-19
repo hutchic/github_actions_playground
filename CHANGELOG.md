@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/hutchic/github_actions_playground/compare/0.3.1...0.4.0) (2021-03-19)
+
+
+### Features
+
+* **release:** empty commit to force a commit ([7f444cb](https://github.com/hutchic/github_actions_playground/commit/7f444cb164d4be58f394becccad4791684916b3d))
+
 # [0.3.0](https://github.com/hutchic/github_actions_playground/compare/0.2.0...0.3.0) (2021-03-19)
 
 
