@@ -28,7 +28,7 @@ jobs:
         with:
           images: hutchic/github-actions # list of Docker images to use as base name for tags
           tag-sha: true # add git short SHA as Docker tag
-          tag-custom: ${{ steps.release.outputs.last-release-git-tag }}
+          tag-custom: ${{ steps.release.outputs.release-git-tag }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -49,10 +49,10 @@ jobs:
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
       - name: Update values.yaml
-        run: yq w -i values.yaml image.tag ${{ steps.release.outputs.last-release-git-tag }}
+        run: yq w -i values.yaml image.tag ${{ steps.release.outputs.release-git-tag }}
       - name: Commit back
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Release ${{ steps.release.outputs.last-release-git-tag }}
+          message: Release ${{ steps.release.outputs.release-git-tag }}
           branch: main
