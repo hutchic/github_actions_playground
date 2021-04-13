@@ -2,11 +2,11 @@
   "branches": ['main'],
   "tagFormat": "${version}",
   "plugins": [
-    "@semantic-release/release-notes-generator",
+    "@semantic-release/commit-analyzer",
     "@semantic-release/changelog", {
       "changelogFile": "CHANGELOG.md"
     },
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/github"
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/git"
   ]
 }
