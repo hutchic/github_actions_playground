@@ -20,10 +20,3 @@ jobs:
         uses: ahmadnassri/action-semantic-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Commit back
-        if: steps['release']['outputs']['published'] == 'true'
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Release ${{ steps.release.outputs.release-version }}
-          branch: main
