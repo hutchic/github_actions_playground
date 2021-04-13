@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/hutchic/github_actions_playground/compare/0.4.0...0.4.1) (2021-04-13)
+
+
+### Bug Fixes
+
+* **release:** force a patch release ([24da3b3](https://github.com/hutchic/github_actions_playground/commit/24da3b393f19dc2d1dff3da664ec8792d9ab8a1e))
+
 # [0.4.0](https://github.com/hutchic/github_actions_playground/compare/0.3.1...0.4.0) (2021-03-19)
 
 
