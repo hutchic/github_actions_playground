@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/hutchic/github_actions_playground/compare/0.5.1...0.5.2) (2021-04-13)
+
+
+### Bug Fixes
+
+* **docker:** we need to push the image not just build it ([b016126](https://github.com/hutchic/github_actions_playground/commit/b016126aa0ff3fceb8023f621e057cb8ca88b614))
+
 ## [0.5.1](https://github.com/hutchic/github_actions_playground/compare/0.5.0...0.5.1) (2021-04-13)
 
 
