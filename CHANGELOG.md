@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/hutchic/github_actions_playground/compare/0.4.7...0.5.0) (2021-04-13)
+
+
+### Features
+
+* **docker:** release docker images as well as github ([155d641](https://github.com/hutchic/github_actions_playground/commit/155d6414fde921eaa4859e92dfebc9753e213139))
+
 ## [0.4.7](https://github.com/hutchic/github_actions_playground/compare/0.4.6...0.4.7) (2021-04-13)
 
 
