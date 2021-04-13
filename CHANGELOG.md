@@ -1,3 +1,10 @@
+## [0.4.6](https://github.com/hutchic/github_actions_playground/compare/0.4.5...0.4.6) (2021-04-13)
+
+
+### Bug Fixes
+
+* **release:** adjust the order or semantic-commit plugins ([e334698](https://github.com/hutchic/github_actions_playground/commit/e33469800881a626057e4833b20bfe52316175be))
+
 ## [0.4.5](https://github.com/hutchic/github_actions_playground/compare/0.4.4...0.4.5) (2021-04-13)
 
 
