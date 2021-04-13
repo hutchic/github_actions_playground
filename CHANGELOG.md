@@ -1,3 +1,10 @@
+## [0.5.1](https://github.com/hutchic/github_actions_playground/compare/0.5.0...0.5.1) (2021-04-13)
+
+
+### Bug Fixes
+
+* **docker:** release docker to the right repository ([54e55f4](https://github.com/hutchic/github_actions_playground/commit/54e55f4f3719f468ef8ba9d8b6c005befa898225))
+
 # [0.5.0](https://github.com/hutchic/github_actions_playground/compare/0.4.7...0.5.0) (2021-04-13)
 
 
