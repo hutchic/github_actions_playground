@@ -32,10 +32,6 @@
         ]
       }
     }],
-    ["@semantic-release/exec", {
-      "prepareCmd": "docker run --rm -v '${PWD}':/workdir mikefarah/yq w -i values.yaml image.tag ${nextRelease.version}",
-    }],
-    "@semantic-release/git",
     "@semantic-release/github"
   ]
 }
