@@ -32,6 +32,10 @@
         ]
       }
     }],
+    ["@semantic-release/exec", {
+      "prepare": "yq w -i values.yaml image.tag ${nextRelease.version}"
+    }],
+    "@semantic-release/git",
     "@semantic-release/github"
   ]
 }
