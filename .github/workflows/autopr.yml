@@ -18,10 +18,10 @@ jobs:
         fetch-depth: 0
         persist-credentials: false
         ref: ${{ github.event.pull_request.head.sha }}
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
