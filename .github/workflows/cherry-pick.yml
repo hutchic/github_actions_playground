@@ -1,0 +1,21 @@
+name: Auto PR to release branches
+on:
+  branches: [main]
+
+jobs:
+  cherry-pick:
+    runs-on: ubuntu-latest
+    if: github.event.pusher.name == 'dependabot[bot]'
+    
+    strategy:
+      matrix:
+        branches: [release/2.6.0.0]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: cherry pick
+      uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
+      with:
+        branch: ${{ matrix.BRANCHES }}
