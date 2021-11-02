@@ -1,0 +1,25 @@
+name: Auto PR to release branches
+on:
+  push:
+    branches:
+    - dependabot/docker/**
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+
+    strategy:
+      matrix:
+        branches: [release/2.6.0.0]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        pesist-credentials: false
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: ${{ matrix.BRANCHES }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
