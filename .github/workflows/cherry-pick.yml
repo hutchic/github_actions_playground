@@ -20,3 +20,4 @@ jobs:
       uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
       with:
         branch: ${{ matrix.BRANCHES }}
+        token: ${{ secrets.CHERRY_PICK_TOKEN }}
