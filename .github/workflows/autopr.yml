@@ -20,9 +20,11 @@ jobs:
         ref: ${{ github.event.pull_request.head.sha }}
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        source_branch: ${GITHUB_REF##*/}
+        source_branch: ${GITHUB_HEAD_REF}
         destination_branch: ${{ matrix.BRANCHES }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
