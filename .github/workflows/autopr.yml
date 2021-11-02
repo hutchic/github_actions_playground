@@ -21,5 +21,6 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
+        source_branch: ${GITHUB_REF##*/}
         destination_branch: ${{ matrix.BRANCHES }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
