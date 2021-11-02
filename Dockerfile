@@ -1,3 +1,3 @@
-FROM ubuntu:focal@sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322
+FROM ubuntu:focal@sha256:e5f3d3454fe70910eaf28a01ef501e2cb6630ffe77d43c82d409ea57002ebf78
 
 COPY / /src
