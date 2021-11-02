@@ -1,12 +1,13 @@
-name: Auto PR to release branches
+name: Cherry pick to release branches
 on:
-  push:
-    branches: [main]
+  pull_request:
+    branches: [ master ]
+    types: [ closed ]
 
 jobs:
   cherry-pick:
     runs-on: ubuntu-latest
-    if: github.event.pusher.name == 'dependabot[bot]'
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
     
     strategy:
       matrix:
@@ -16,8 +17,8 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: cherry pick
-      uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
+    - name: Cherry pick to ${{ matrix.BRANCHES }}
+      uses: Nathanmalnoury/gh-backport-action@master
       with:
-        branch: ${{ matrix.BRANCHES }}
-        token: ${{ secrets.CHERRY_PICK_TOKEN }}
+        pr_branch: ${{ matrix.BRANCHES }}
+        github_token: ${{ secrets.CHERRY_PICK_TOKEN }}
