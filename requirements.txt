@@ -1,2 +1,2 @@
 charset-normalizer==2.0.6
-idna==3.2
+idna==3.3
