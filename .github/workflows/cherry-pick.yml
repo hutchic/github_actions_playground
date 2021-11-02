@@ -1,13 +1,13 @@
 name: Cherry pick to release branches
 on:
-  push:
-    branches:
-    - dependabot/docker/**
+  pull_request:
+    branches: [ master ]
+    types: [ closed ]
 
 jobs:
-  pull-request:
+  backport-pr:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'dependencies')
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
 
     strategy:
       matrix:
@@ -17,12 +17,9 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        pesist-credentials: false
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
+        pesist-credentials: true
+    - name: Backport PR by cherry-pick-ing
+      uses: Nathanmalnoury/gh-backport-action@master
       with:
-        destination_branch: ${{ matrix.BRANCHES }}
+        pr_branch: ${{ matrix.BRANCHES }}
         github_token: ${{ secrets.CHERRY_PICK_TOKEN }}
-
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
