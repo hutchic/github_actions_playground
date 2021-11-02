@@ -1,8 +1,7 @@
 name: Auto PR to release branches
 on:
-  push:
-    branches:
-    - dependabot/docker/**
+  pull_request:
+    branches: [main]
 
 jobs:
   pull-request:
@@ -18,6 +17,7 @@ jobs:
       with:
         fetch-depth: 0
         persist-credentials: false
+        ref: ${{ github.event.pull_request.head.sha }}
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
