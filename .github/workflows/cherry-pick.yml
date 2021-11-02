@@ -25,4 +25,4 @@ jobs:
         github_token: ${{ secrets.CHERRY_PICK_TOKEN }}
 
 env:
-  GITHUB_TOKEN: ${{ secrets.CHERRY_PICK_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
