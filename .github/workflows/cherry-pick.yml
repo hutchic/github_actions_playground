@@ -23,3 +23,6 @@ jobs:
       with:
         destination_branch: ${{ matrix.BRANCHES }}
         github_token: ${{ secrets.CHERRY_PICK_TOKEN }}
+
+env:
+  GITHUB_TOKEN: ${{ secrets.CHERRY_PICK_TOKEN }}
